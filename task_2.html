@@ -1,10 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        pre {width: 100%; white-space: pre-wrap}
+    </style>
     <meta charset="UTF-8">
     <title>Лабораторна робота №2»</title>
 </head>
 <body>
+    <h2><strong style="font-family: Calibri">Завдання 2 - </strong> <small><i>Програмний код</i></small> </h2>
+    <hr size="2px" color="grey" style="border-radius: 1px">
+    <h1 align="center">Лабораторна робота №10. Структури</h1>
+    <h2 align="center">Підготував студент 142(А) групи - Ткачук Павло</h2>
+    <h3><strong>Варіант 10.13.</strong> <small>Створіть структуру з іменем Price, яка б містила наступні поля:</small> </h3>
+    <ul>
+        <li><p>Назва товару;</p></li>
+        <li><p>Назва фірми-виробника;</p></li>
+        <li><p>Вартість товару в грн;</p></li>
+        <li><p>Розміри (масив з п’яти елементів, наприклад: size[5]={37, 38, 39, 40, 41}; ).</p></li>
+    </ul>
+    <h4>Напишіть програму, яка б виконувала наступні дії:</h4>
+    <ol>
+        <li><p>Введення з клавіатури даних в масив, що складається з восьми елементів типу Price (3 бали);</p></li>
+        <li><p>Впорядкування записів у масиві за спаданням вартості товарів (+1 бали).</p></li>
+        <li><p>Виведення на екран інформації про товар, назва і розмір якого вводиться з клавіатури. Якщо такого немає – вивести відповідне повідомлення (+1 бал).</p></li>
+    </ol>
+    <div align="center"><h2>Виконання завдання на мові С++ та блок схема</h2></div>
+    <div style="display: inline-block; width: 63%; margin-left: 40px">
+            <pre style="display: inline-block">
+#include <"iostream">
+#include <"string">
+using namespace std;
 
+int main()
+{
+    int m;
+    cout << "How many Price objects? ";
+    cin >> m;
+    struct Price {
+        string name, company;
+        float prise;
+        int size[5];
+    };
+    Price array[8];
+    Price temp;
+    for (int i = 0; i < m; i++)
+    {
+        cout << "\nEnter name for " << i+1 << " item\n";
+        cin.ignore();
+        getline(cin, array[i].name);
+        cout << "Enter company name for " << i + 1 << " item\n";
+        getline(cin, array[i].company);
+        cout << "Enter prise for " << i + 1 << " item\n";
+        cin>>array[i].prise;
+        cout << "Enter 5 size for " << i + 1 << " item\n";
+        cin >> array[i].size[0] >> array[i].size[1] >> array[i].size[2] >> array[i].size[3] >> array[i].size[4];
+    }
+
+    cout << "\nPrice before sort:\n";
+    for (int i = 0; i < m; i++)
+    {
+        cout << i+1 << ". " << array[i].prise<<;
+    }
+
+    for (int i = 0; i < m; i++)
+    {
+        for (int i = 0; i < m; i++)
+        {
+            if (array[i].prise < array[i + 1].prise)
+            {
+                temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+            }
+        }
+    }
+
+    cout << "\nArray successfully sorted!!!\n";
+
+    cout << "\nPrice after sort:\n";
+
+    for (int i = 0; i < m; i++)
+    {
+        cout << i+1 << ". " << array[i].prise<<"\n";
+    }
+    int k=0, l=0;
+    string n;
+    int s[5];
+    cout << "\nName item what information you need? \n";
+    cin.ignore();
+    getline(cin, n);
+    cout << "\nEnter 5 size for item what information you need? \n";
+    cin >> s[0] >> s[1] >> s[2] >> s[3] >> s[4];
+    for (int i = 0; i < m; i++)
+    {
+        if (n == array[i].name)
+        {
+            k += 1;
+            if (s[0] == array[i].size[0] && s[1] == array[i].size[1] && s[2] == array[i].size[2] && s[3] == array[i].size[3] && s[4] == array[i].size[4])
+            {
+                l += 1;
+                cout << "\nItem name - " << array[i].name << ".\n";
+                cout << "Company name - " << array[i].company << ".\n";
+                cout << "Item price  - " << array[i].prise << " uan.\n";
+                cout << "Item size - " << array[i].size[0];
+                cout << ", " << array[i].size[1];
+                cout << ", " << array[i].size[2];
+                cout << ", " << array[i].size[3];
+                cout << ", " << array[i].size[4] << ".\n";
+            }
+        }
+    }
+    if (k==0 || l==0)
+    {
+        cout << "\nWe haven't this item" << endl;
+    }
+}
+            </pre>
+    </div>
+    <div align="center" style="display: inline-block; width: 32%">
+        <img style="display: inline-block" height="1300px" src="diagram_L10.png" alt="Діаграма відсутня.">
+    </div>
+    <div style="font-family: roboto, sans-serif">
+        <div>
+            <h2>А таож цікава цитата Хаширами Сенджу :)</h2>
+            <h3 style="color: #5b2727;"><q>Якщо не намагатися щось змінити, то нічого і не зміниться.</q></h3>
+        </div>
+        <div>
+            <h3><p>© Виконав <a style="text-decoration: none; color: black" class="creator_name" href="https://github.com/Sengammi">Sengammi</a></p></h3>
+        </div>
+    </div>
 </body>
 </html>
